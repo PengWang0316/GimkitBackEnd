@@ -1,0 +1,14 @@
+{
+  "presets": [
+    ["@babel/preset-env", {"modules": false}],
+  ],
+  "plugins": ["transform-class-properties", "@babel/plugin-proposal-object-rest-spread", "@babel/transform-runtime"],
+  "env": {
+    "test": {
+      "presets": [
+        "@babel/preset-env",
+      ],
+      "plugins": ["transform-class-properties", "@babel/plugin-proposal-object-rest-spread"]
+    }
+  }
+}
