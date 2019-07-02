@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "helmet": "^3.18.0",
     "middy": "^0.28.2",
+    "mysql": "github:mysqljs/mysql",
     "querystring": "^0.2.0",
     "spdy": "^4.0.0",
     "winston": "^3.2.1"
