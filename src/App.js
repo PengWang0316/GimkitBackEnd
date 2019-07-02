@@ -5,9 +5,10 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const { initialPool } = require('@kevinwang0316/mysql-helper');
 
 // fallback to regular https when the browers do not support HTTP2 nor SPDY.
-const spdy = require('spdy');
+// const spdy = require('spdy');
 const normalRouters = require('./routers/NormalRouters');
 require('dotenv').config();
 
@@ -35,5 +36,12 @@ app.use('/api/v1', normalRouters);
 app.get('/healthcheck', (req, res) => {
   res.end('ok');
 });
+// Initialize the MySql pool
+const {
+  dbHost, dbUser, dbPassword, dbName, poolSize,
+} = process.env;
+console.log(poolSize);
+initialPool(dbHost, dbUser, dbPassword, dbName, poolSize, { multipleStatements: true });
 
-spdy.createServer(app).listen(process.env.SERVER_PORT, () => console.log(`The service is started. port:${process.env.SERVER_PORT}`));
+// spdy.createServer(app).listen(process.env.SERVER_PORT, () => console.log(`The service is started. port:${process.env.SERVER_PORT}`));
+app.listen(process.env.SERVER_PORT, () => console.log(`The service is started. port:${process.env.SERVER_PORT}`));
