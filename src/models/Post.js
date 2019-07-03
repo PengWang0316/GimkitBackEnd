@@ -8,6 +8,11 @@ exports.addNewPost = async ({ title, content }) => {
   };
 };
 
+exports.updatePost = async ({ title, content, id }) => {
+  const UPDATE_SQL = 'UPDATE ?? SET title= ?, content = ? WHERE id = ?';
+  await queryAsync(UPDATE_SQL, [process.env.POST_TABLE, title, content, +id]);
+};
+
 exports.fetchPostCount = async () => {
   const QUERY_SQL = 'SELECT COUNT(*) count FROM ??';
   const { rows } = await queryAsync(QUERY_SQL, [process.env.POST_TABLE]);
