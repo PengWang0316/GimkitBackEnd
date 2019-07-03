@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     await updatePost(post);
     res.status(200).end();
   } catch (err) {
-    logger.error('AddNewPost', err);
+    logger.error('UpdatePost', err);
     res.status(500).end();
   }
 };
