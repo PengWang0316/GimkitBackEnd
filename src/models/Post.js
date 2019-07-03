@@ -19,3 +19,8 @@ exports.fetchPosts = async (offset, limit) => {
   const { rows } = await queryAsync(QUERY_SQL, [process.env.POST_TABLE, +offset, +limit]);
   return rows;
 };
+
+exports.deletePost = async (id) => {
+  const DELETE_SQL = 'DELETE FROM ?? WHERE id = ?';
+  await queryAsync(DELETE_SQL, [process.env.POST_TABLE, +id]);
+};
