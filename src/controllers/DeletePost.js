@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     await deletePost(id);
     res.status(200).end();
   } catch (err) {
-    logger.error('FetchPosts', err);
+    logger.error('DeletePost', err);
     res.status(500).end();
   }
 };
